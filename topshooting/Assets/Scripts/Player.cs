@@ -5,8 +5,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public GameObject bullet_Prefab;
+    public int bullet_Term;
 
-    private float bullet_Time = 0;
+    private int bullet_Term_Count = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,12 +29,12 @@ public class Player : MonoBehaviour
             print("Right arrow key is held down");
         }
 
-        if (bullet_Time++ > 25)
+        if (bullet_Term_Count++ > bullet_Term)
         {
             var bullet_Object = Instantiate(bullet_Prefab);
             bullet_Object.transform.position = transform.position;
 
-            bullet_Time = 0;
+            bullet_Term_Count = 0;
         }
     }
 }

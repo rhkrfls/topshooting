@@ -263,6 +263,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet_Prefab: {fileID: 6965909346096139332, guid: 6e54e4e102783c84d9caea10f5253650,
     type: 3}
+  bullet_Term: 20
 --- !u!212 &594841669
 SpriteRenderer:
   m_ObjectHideFlags: 0
