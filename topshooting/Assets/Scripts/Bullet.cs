@@ -2,32 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : CollisionObject
 {
     // Start is called before the first frame update
     void Start()
     {
-        
+        MovementVector = new Vector2(0, 0.1f);
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void OnCollisionEnter(Collision collision)
     {
-        transform.position = transform.position + new Vector3(0, 0.1f);
-
-        //if(transform.position.y >= 8.0f)
-        //{
-        //    Destroy(gameObject);
-        //}
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        print(collision.gameObject.name);
-
-        if(collision.gameObject.name == "Wall")
+        if (collision.gameObject.name == "Wall")
         {
             Destroy(gameObject);
         }
+
+
+        if (collision.gameObject.GetComponent<Enemy>() != null)
+        {
+            collision.gameObject.GetComponent<Enemy>().DecreaseHP();
+            Destroy(gameObject);
+        }
+
     }
 }
