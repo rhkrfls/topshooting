@@ -12,11 +12,19 @@ public abstract class Singleton<T> : MonoBehaviour where T : Component
         {
             if (instance == null)
             {
-                var foundObject = FindObjectOfType(typeof(T)) as T;  //typeof 안의 컴퍼넌트를 찾아줌
+                var foundObject = FindObjectsOfType(typeof(T)) as T[];  //typeof 안의 컴퍼넌트를 찾아줌
 
-                if (foundObject != null)
+                if (foundObject.Length >= 2)
                 {
-                    instance = foundObject;
+                    foreach (var found in foundObject)
+                        Debug.LogError($"gameobject name : {found.name}");
+
+                    throw new System.Exception($"{typeof(T)} is duplicated.");
+                }
+
+                if(foundObject.Length > 0)
+                {
+                    instance = foundObject[0];
                 }
 
                 if (instance == null)
@@ -25,7 +33,6 @@ public abstract class Singleton<T> : MonoBehaviour where T : Component
                     instance = newGameObject.AddComponent<T>();
                 }
             }
-
             return instance;
         }
     }

@@ -7,13 +7,11 @@ public class SpawnManager : MonoBehaviour
     public int Enemy_Term = 30;
     private int Enemy_Term_Count = 0;
 
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
+        if (!GameScene.Instance.isPlaying)
+            return;
+
         if(Enemy_Term_Count++ >= Enemy_Term)
         {
             Spawn();

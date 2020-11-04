@@ -2,23 +2,47 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class GameScene : Singleton<GameScene>
 {
-    private int score;
+    // static public > public > private 순서로 작성
+    
+    public bool isPlaying { get; private set; }
 
     [SerializeField]
-    private Text ScoreText;
+    private SpawnManager spawnManager;
+
+    [SerializeField]
+    private Player player;
 
     protected override void Awake()
     {
         base.Awake();
-        score = 0;
+        SetPlayComponet(false);
     }
 
-    public void AddScore(int add_Score)
+    public void StartGame()
     {
-        score += add_Score;
-        ScoreText.text = $"Score : {score}"; //'$'를 붙일 시 {} 안에 변수 추가 가능
+        var fireSequence = DOTween.Sequence();
+        fireSequence.Append(player.transform.DOMoveY(-5.0f, 2f).SetEase(Ease.InCirc, 2f));
+        fireSequence.AppendCallback(() =>
+        {
+            isPlaying = true;
+            SetPlayComponet(true);
+        });
+    }
+
+    public void GameOver()
+    {
+        isPlaying = false;
+        SetPlayComponet(false);
+    }
+
+    private void SetPlayComponet(bool isOn)
+    {
+        spawnManager.enabled = isOn;
+        player.enabled = isOn;
+        GameHUD.Instance.gameObject.SetActive(isOn);
     }
 }
