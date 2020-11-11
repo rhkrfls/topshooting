@@ -20,7 +20,7 @@ public class Bullet : CollisionObject
 
         if (collision.gameObject.GetComponent<Enemy>() != null)
         {
-            collision.gameObject.GetComponent<Enemy>().DecreaseHP();
+            collision.gameObject.GetComponent<Enemy>().DecreaseHP(10);
             Destroy(gameObject);
         }
 

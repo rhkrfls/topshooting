@@ -1,0 +1,28 @@
+{
+	"EnemyData": [
+		{
+			"key": 1,
+			"MinEnemyKey": 1,
+			"MaxEnemyKey": 2,
+			"Speed": 2
+		},
+		{
+			"key": 2,
+			"MinEnemyKey": 2,
+			"MaxEnemyKey": 3,
+			"Speed": 3
+		},
+		{
+			"key": 3,
+			"MinEnemyKey": 3,
+			"MaxEnemyKey": 4,
+			"Speed": 5
+		},
+		{
+			"key": 4,
+			"MinEnemyKey": 4,
+			"MaxEnemyKey": 5,
+			"Speed": 1
+		}
+	]
+}

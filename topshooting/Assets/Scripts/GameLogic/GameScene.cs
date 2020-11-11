@@ -19,6 +19,10 @@ public class GameScene : Singleton<GameScene>
     protected override void Awake()
     {
         base.Awake();
+
+        TableLoader.LoadAllData();
+        Debug.Log("test : " + EnemyData.Get(1).Key);
+
         SetPlayComponet(false);
     }
 
